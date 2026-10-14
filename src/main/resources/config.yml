@@ -1,0 +1,98 @@
+# ============================================================
+#  AnimatedNametags - config.yml
+#  Todo el texto usa MiniMessage: https://docs.advntr.dev/minimessage/format.html
+# ============================================================
+
+settings:
+  # Cada cuantos ticks se actualiza la animacion (1 = cada tick, 2 = recomendado).
+  update-interval-ticks: 2
+
+  # Oculta el nametag vanilla (usa un team del scoreboard).
+  hide-vanilla-nametags: true
+
+  # Oculta los nametags del plugin TAB (requiere TAB con nametag feature activa).
+  hide-tab-nametags: true
+
+  # Si el jugador ve su propio nametag.
+  show-own-nametag: false
+
+  # Ocultar el nametag cuando el jugador tiene Invisibilidad.
+  hide-when-invisible: true
+
+  # Se ve a traves de bloques (como el vanilla).
+  see-through: true
+
+  # Comportamiento al agacharse: dim (se atenua), hide (se oculta), none (nada).
+  sneak-mode: dim
+
+  # Altura sobre la cabeza (en bloques). Ajustalo si te queda muy alto o bajo.
+  y-offset: 0.25
+
+  # Tamano del texto (1.0 = normal).
+  scale: 1.0
+
+  # Ancho maximo de linea antes de hacer salto automatico.
+  line-width: 400
+
+  # Sombra del texto.
+  shadow: false
+
+  # Fondo: "default" (vanilla), "none" (transparente) o AARRGGBB en hex. Ej: 40000000
+  background: "40000000"
+
+  # Distancia de vision (multiplicador, 1.0 = ~64 bloques).
+  view-range: 0.6
+
+  # Convierte codigos legacy (&c, &#ff0000, §c) a MiniMessage.
+  # Util para placeholders de PlaceholderAPI como %vault_prefix%.
+  legacy-colors: true
+
+# ------------------------------------------------------------
+#  FORMATOS
+#  Se usa el primero (por prioridad, mayor primero) cuyo permiso tenga el jugador.
+#  permission vacio = todos.
+#
+#  Placeholders internos: <player> <displayname> <health> <world> <ping>
+#  Placeholders de animacion (numeros):
+#     {phase}      va de -1 a 1 en bucle  -> <gradient:#f00:#00f:{phase}>  <rainbow:{phase}>
+#     {phase_rev}  igual pero en sentido contrario
+#     {tick}       contador de ticks
+#  Tambien funciona PlaceholderAPI (%placeholder%) si esta instalado.
+#
+#  animation-speed: cuanto avanza {phase} por tick.
+#     0.02 = ciclo completo cada 100 ticks (5s). 0.05 = mas rapido.
+# ------------------------------------------------------------
+formats:
+  admin:
+    permission: "animatednametags.format.admin"
+    priority: 100
+    animation-speed: 0.04
+    lines:
+      - "<gradient:#ff0055:#ffaa00:#ff0055:{phase}><bold>★ ADMIN ★</bold></gradient>"
+      - "<rainbow:{phase}><player></rainbow>"
+      - "<red>❤</red> <white><health></white>"
+
+  vip:
+    permission: "animatednametags.format.vip"
+    priority: 50
+    animation-speed: 0.03
+    lines:
+      - "<gradient:#00ffd5:#7b2ff7:#00ffd5:{phase}><bold>VIP</bold></gradient>"
+      - "<gradient:#00ffd5:#7b2ff7:#00ffd5:{phase_rev}><player></gradient>"
+
+  default:
+    permission: ""
+    priority: 0
+    animation-speed: 0.02
+    lines:
+      - "<gradient:#aaaaaa:#ffffff:#aaaaaa:{phase}><player></gradient>"
+
+messages:
+  prefix: "<gradient:#00ffd5:#7b2ff7><bold>AnimatedNametags</bold></gradient> <dark_gray>»</dark_gray> "
+  reloaded: "<green>Configuracion recargada.</green>"
+  refreshed: "<green>Nametags refrescados.</green>"
+  toggled-on: "<green>Nametag activado para <white><target></white>.</green>"
+  toggled-off: "<red>Nametag desactivado para <white><target></white>.</red>"
+  no-permission: "<red>No tienes permiso.</red>"
+  player-not-found: "<red>Jugador no encontrado.</red>"
+  usage: "<gray>Uso: <white>/ant <reload|toggle [jugador]|refresh></white></gray>"

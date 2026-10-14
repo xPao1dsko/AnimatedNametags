@@ -1,0 +1,18 @@
+name: AnimatedNametags
+version: '${project.version}'
+main: me.animatednametags.AnimatedNametagsPlugin
+api-version: '1.21'
+description: Nametags multilinea con MiniMessage y degradados animados
+softdepend: [TAB, PlaceholderAPI]
+commands:
+  animatednametags:
+    description: Comando principal de AnimatedNametags
+    aliases: [ant, nametags]
+    usage: /<command> <reload|toggle|refresh>
+permissions:
+  animatednametags.admin:
+    description: Permite reload, refresh y toggle de otros jugadores
+    default: op
+  animatednametags.toggle:
+    description: Permite ocultar/mostrar tu propio nametag
+    default: true
